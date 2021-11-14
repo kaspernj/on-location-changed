@@ -65,4 +65,9 @@ window.addEventListener("hashchange", onLocationMightHaveChanged)
 // 'popstate' is only called doing certain actions (React Router won't trigger this for example).
 window.addEventListener("popstate", onLocationMightHaveChanged)
 
+// A React Router history can be registered globally (must be imported before this file).
+if (global.onLocationChanged && global.onLocationChanged.history) {
+  global.onLocationChanged.history.listen(onLocationMightHaveChanged)
+}
+
 export {onLocationChanged}
