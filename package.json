@@ -1,0 +1,23 @@
+{
+  "name": "on-location-changed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "on-location-changed.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaspernj/on-location-changed.git"
+  },
+  "keywords": [
+    "location",
+    "changed"
+  ],
+  "author": "k@spernj.org",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaspernj/on-location-changed/issues"
+  },
+  "homepage": "https://github.com/kaspernj/on-location-changed#readme"
+}
