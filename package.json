@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/kaspernj/on-location-changed/issues"
   },
-  "homepage": "https://github.com/kaspernj/on-location-changed#readme"
+  "homepage": "https://github.com/kaspernj/on-location-changed#readme",
+  "dependencies": {
+    "diggerize": "^1.0.3"
+  }
 }
