@@ -1,4 +1,4 @@
-import {callbacksHandler} from "./callbacks-handler"
+import {callbacksHandler} from "./src/callbacks-handler.js"
 
 const onLocationChanged = (callback) => callbacksHandler.onLocationChanged(callback)
 

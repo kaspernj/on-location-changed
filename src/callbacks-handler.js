@@ -43,6 +43,8 @@ class CallbacksHandler {
   }
 
   onLocationMightHaveChanged = () => {
+    console.error(`Location changed: ${location.href}`)
+
     if (location.href != this.currentLocationHref) {
       this.currentLocationHref = location.href
 

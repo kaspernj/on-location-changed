@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/kaspernj/on-location-changed#readme",
   "dependencies": {
-    "diggerize": "^1.0.3"
+    "diggerize": "^1.0.3",
+    "qs": "^6.10.5"
   },
   "peerDependencies": {
     "prop-types": ">= 15.7.2",
