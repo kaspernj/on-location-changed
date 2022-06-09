@@ -1,5 +1,5 @@
 import {digg} from "diggerize"
-import {OnLocationChangedCallback} from "./on-location-changed-callback"
+import {OnLocationChangedCallback} from "./on-location-changed-callback.js"
 
 class CallbacksHandler {
   constructor() {
@@ -52,11 +52,11 @@ class CallbacksHandler {
 }
 
 // Prevent anything from spawning multiple instances (which happened!)
-if (!global.onLocationChangedCallbacksHandler) {
-  global.onLocationChangedCallbacksHandler = new CallbacksHandler()
+if (!globalThis.onLocationChangedCallbacksHandler) {
+  globalThis.onLocationChangedCallbacksHandler = new CallbacksHandler()
 }
 
-const callbacksHandler = global.onLocationChangedCallbacksHandler
+const callbacksHandler = globalThis.onLocationChangedCallbacksHandler
 
 // Export the single handler that is supposed to exist
 export {callbacksHandler}
