@@ -1,8 +1,8 @@
-import {onLocationChanged} from "../index"
+import {onLocationChanged} from "./on-location-changed"
 import qs from "qs"
 import React from "react"
 
-const params = () => qs.parse(global.location.search.substr(1))
+const params = () => qs.parse(global.location.search.substr(1)) || {}
 
 const withQueryParams = (WrappedComponent) => class OnLocationChanged extends React.PureComponent {
   state = {
@@ -22,7 +22,7 @@ const withQueryParams = (WrappedComponent) => class OnLocationChanged extends Re
 
   render() {
     return (
-      <WrappedComponent params={this.state.params} {...this.props} />
+      <WrappedComponent {...this.props} queryParams={this.state.queryParams} />
     )
   }
 
