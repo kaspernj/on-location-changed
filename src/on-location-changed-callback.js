@@ -1,4 +1,4 @@
-export class OnLocationChangedCallback {
+export default class OnLocationChangedCallback {
   constructor(callbacksHandler, id, callback) {
     this.callback = callback
     this.callbacksHandler = callbacksHandler

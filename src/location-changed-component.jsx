@@ -1,4 +1,4 @@
-import {onLocationChanged} from "./on-location-changed"
+import onLocationChanged from "./on-location-changed"
 import PropTypes from "prop-types"
 import PropTypesExact from "prop-types-exact"
 import React from "react"
