@@ -1,5 +1,5 @@
 import {digg} from "diggerize"
-import {OnLocationChangedCallback} from "./on-location-changed-callback.js"
+import OnLocationChangedCallback from "./on-location-changed-callback.js"
 
 class CallbacksHandler {
   constructor() {

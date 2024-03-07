@@ -1,33 +1,11 @@
-import {onLocationChanged} from "../index"
-import React from "react"
+import usePath from "./use-path.js"
 
-const withPath = (WrappedComponent) => class WithPath extends React.PureComponent {
-  state = {
-    path: global.location.pathname
-  }
+const withPath = (WrappedComponent) => (props) => {
+  const path = usePath()
 
-  componentDidMount() {
-    this.onLocationChangedEvent = onLocationChanged(this.onLocationChanged)
-  }
-
-  componentWillUnmount() {
-    if (this.onLocationChangedEvent) {
-      this.onLocationChangedEvent.disconnect()
-      this.onLocationChangedEvent = undefined
-    }
-  }
-
-  render() {
-    return (
-      <WrappedComponent path={this.state.path} {...this.props} />
-    )
-  }
-
-  onLocationChanged = () => {
-    const path = window.location.pathname
-
-    if (this.state.path != path) this.setState({path})
-  }
+  return (
+    <WrappedComponent path={path} {...props} />
+  )
 }
 
 export default withPath
