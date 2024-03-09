@@ -15,8 +15,6 @@ const useQueryParams = () => {
     }
   })
 
-  console.log("useQueryParams", {queryParams})
-
   return queryParams
 }
 
