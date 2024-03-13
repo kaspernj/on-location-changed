@@ -1,2 +1,2 @@
-import {onLocationChanged} from "./src/on-location-changed.js"
+import onLocationChanged from "./src/on-location-changed.js"
 export {onLocationChanged}
