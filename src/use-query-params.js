@@ -8,8 +8,6 @@ const useQueryParams = () => {
   const [queryParams, setQueryParams] = useState(params())
   const updateQueryParams = useCallback(() => setQueryParams(params()), [])
 
-  console.error(`DEBUG: useQueryParams - ${JSON.stringify(queryParams)}`)
-
   useEffect(() => {
     const onLocationChangedEvent = onLocationChanged(updateQueryParams)
 
