@@ -15,8 +15,14 @@ class CallbacksHandler {
   }
 
   connectMutationObserver() {
+    const body = document.querySelector("body")
+
     // Solution recommended various places on the internet is to observe for changed and then check if the location has changed.
-    new MutationObserver(digg(this, "onLocationMightHaveChanged")).observe(document, {subtree: true, childList: true})
+    const observer = new MutationObserver(digg(this, "onLocationMightHaveChanged"))
+    const config = {subtree: true, childList: true}
+
+    observer.observe(body, config)
+    observer.observe(document, config)
   }
 
   connectReactRouterHistory(history) {
@@ -32,6 +38,8 @@ class CallbacksHandler {
     window.addEventListener("popstate", digg(this, "onLocationMightHaveChanged"))
   }
 
+  connectInterval = () => setInterval(digg(this, "onLocationMightHaveChanged"), 500)
+
   onLocationChanged = (givenCallback) => {
     this.count += 1
 
@@ -45,7 +53,6 @@ class CallbacksHandler {
   onLocationMightHaveChanged = () => {
     if (location.href != this.currentLocationHref) {
       this.currentLocationHref = location.href
-
       this.callCallbacks()
     }
   }
