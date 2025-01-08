@@ -1,7 +1,7 @@
 # Installation
 
 ```js
-import {callbacksHandler} from "on-location-changed/callbacks-handler"
+import {callbacksHandler} from "on-location-changed/build/callbacks-handler"
 
 callbacksHandler.connectReactRouterHistory(history)
 ```
@@ -9,7 +9,7 @@ callbacksHandler.connectReactRouterHistory(history)
 # Usage
 
 ```jsx
-const {LocationChanged} = require("on-location-changed/location-changed-component")
+const {LocationChanged} = require("on-location-changed/build/location-changed-component")
 ```
 
 ```jsx
