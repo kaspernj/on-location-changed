@@ -1,4 +1,4 @@
-import {memo} from "react"
+import React, {memo} from "react"
 import usePath from "./use-path.js"
 
 const withPath = (WrappedComponent) => memo((props) => {
