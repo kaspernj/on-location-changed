@@ -9,15 +9,25 @@ callbacksHandler.connectReactRouterHistory(history)
 # Usage
 
 ```jsx
-const {LocationChanged} = require("on-location-changed/build/location-changed-component")
+import WithCustomPath from "on-location-changed/build/with-custom-path"
 ```
 
 ```jsx
-<LocationChanged onChanged={this.onLocationChanged} />
+<WithCustomPath path={somePath}>
+  <App />
+</WithCustomPath>
 ```
 
 ```jsx
-onLocationChanged = () => {
-  console.log("The location was changed")
-}
+<WithLocationPath>
+  <App />
+</WithLocationPath>
+```
+
+```jsx
+import usePath from "on-location-changed/build/use-custom-path"
+```
+
+```jsx
+const path = usePath()
 ```
