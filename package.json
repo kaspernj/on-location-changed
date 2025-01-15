@@ -1,6 +1,6 @@
 {
   "name": "on-location-changed",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "My new module",
   "main": "build/index.js",
   "types": "build/index.d.ts",
