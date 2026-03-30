@@ -1,6 +1,6 @@
 {
   "name": "on-location-changed",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "My new module",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -15,7 +15,8 @@
     "open:ios": "xed example/ios",
     "open:android": "open -a \"Android Studio\" example/android",
     "android": "expo run:android",
-    "ios": "expo run:ios"
+    "ios": "expo run:ios",
+    "release:patch": "node scripts/release-patch.js"
   },
   "keywords": [
     "react-native",
