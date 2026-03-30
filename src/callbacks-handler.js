@@ -1,4 +1,4 @@
-import {digg} from "diggerize"
+import {digg} from "diggerize/build/index.js"
 import OnLocationChangedCallback from "./on-location-changed-callback.js"
 
 class CallbacksHandler {
