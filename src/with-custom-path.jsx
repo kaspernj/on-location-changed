@@ -1,5 +1,6 @@
-import React, {memo, useLayoutEffect} from "react"
-import {LocationContext, LocationStoreContext, QueryParamsContext, defaultLocationStore} from "./location-context"
+import React, {memo, useLayoutEffect, useMemo} from "react"
+import {LocationContext, LocationStoreContext, QueryParamsContext} from "./location-context"
+import {LocationStore} from "./location-store.js"
 
 const withCustomPath = memo(({children, path, queryParams, ...restProps}) => {
   const restPropsKeys = Object.keys(restProps)
@@ -8,11 +9,13 @@ const withCustomPath = memo(({children, path, queryParams, ...restProps}) => {
     throw new Error(`Unhandled props given: ${restPropsKeys.join(", ")}`)
   }
 
-  defaultLocationStore.replaceSnapshotSilently({path, queryParams})
-  useLayoutEffect(defaultLocationStore.flushPendingNotification, [path, queryParams])
+  const locationStore = useMemo(() => new LocationStore(), [])
+
+  locationStore.replaceSnapshotSilently({path, queryParams})
+  useLayoutEffect(locationStore.flushPendingNotification, [locationStore, path, queryParams])
 
   return (
-    <LocationStoreContext.Provider value={defaultLocationStore}>
+    <LocationStoreContext.Provider value={locationStore}>
       <LocationContext.Provider value={path}>
         <QueryParamsContext.Provider value={queryParams}>
           {children}
