@@ -1,6 +1,6 @@
 {
   "name": "on-location-changed",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "My new module",
   "scripts": {
     "build": "expo-module build",
