@@ -35,16 +35,6 @@ import WithExpoLocationPath from "on-location-changed/build/with-expo-location-p
 ```
 
 ```jsx
-import WithExpoLocationStorePath from "on-location-changed/build/with-expo-location-store-path"
-```
-
-```jsx
-<WithExpoLocationStorePath>
-  <App />
-</WithExpoLocationStorePath>
-```
-
-```jsx
 import usePath from "on-location-changed/build/use-path"
 ```
 
