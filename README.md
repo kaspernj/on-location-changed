@@ -51,6 +51,24 @@ const params = useSelectedQueryParams(["project_ids", {q: ["name_cont", "state_i
 ```
 
 ```jsx
+import useLocationPath from "on-location-changed/build/use-location-path"
+```
+
+```jsx
+const path = useLocationPath()
+```
+
+```jsx
+import currentLocationPath from "on-location-changed/build/current-location-path"
+import currentQueryParams from "on-location-changed/build/current-query-params"
+```
+
+```jsx
+const path = currentLocationPath()
+const params = currentQueryParams()
+```
+
+```jsx
 import onSelectedQueryParamsChanged from "on-location-changed/build/on-selected-query-params-changed"
 ```
 
