@@ -1,5 +1,10 @@
 # Installation
 
+This package intentionally does not expose a root entrypoint. Import the
+specific helper you need from `on-location-changed/build/*` so bundlers do not
+pull unrelated React, Expo Router, browser-history, or query-param helpers into
+the consumer bundle.
+
 ```js
 import {callbacksHandler} from "on-location-changed/build/callbacks-handler"
 

@@ -3,7 +3,6 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "on-location-changed": ["../src/index"],
       "on-location-changed/*": ["../src/*"]
     }
   }
