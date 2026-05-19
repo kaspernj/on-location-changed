@@ -67,7 +67,7 @@ export function pathForQueryParamUpdates(
   const nextSearchParams = new URLSearchParams()
 
   appendCurrentParams(nextSearchParams, currentParams, excludedKeys, updateKeys)
-  appendUpdateParams(nextSearchParams, updates)
+  appendUpdateParams(nextSearchParams, updates, excludedKeys)
 
   if (currentSearchParams.toString() === nextSearchParams.toString()) return null
 
@@ -110,10 +110,12 @@ function appendCurrentParams(searchParams, params, excludedKeys, updateKeys) {
  * Appends updated params.
  * @param {URLSearchParams} searchParams Search params being built.
  * @param {QueryParamUpdates} updates Param updates to append.
+ * @param {Set<string>} excludedKeys Param keys to skip.
  * @returns {void} Nothing.
  */
-function appendUpdateParams(searchParams, updates) {
+function appendUpdateParams(searchParams, updates, excludedKeys) {
   for (const key of Object.keys(updates).sort()) {
+    if (excludedKeys.has(key)) continue
     appendQueryParam(searchParams, key, updates[key])
   }
 }

@@ -1,5 +1,6 @@
-import React, {memo, useEffect, useRef} from "react"
-import {LocationContext, LocationStoreContext, QueryParamsContext, defaultLocationStore} from "./location-context"
+import React, {memo, useEffect, useMemo, useRef} from "react"
+import {LocationContext, LocationStoreContext, QueryParamsContext} from "./location-context"
+import {LocationStore} from "./location-store.js"
 import {queryParamsKey} from "./query-param-selector.js"
 
 const withCustomPath = memo(({children, path, queryParams, ...restProps}) => {
@@ -13,8 +14,9 @@ const withCustomPath = memo(({children, path, queryParams, ...restProps}) => {
   const typedQueryParams = queryParams || {}
   const publishedSnapshotKeyRef = useRef("")
   const snapshotKey = `${typedPath}\n${queryParamsKey(typedQueryParams)}`
+  const locationStore = useMemo(() => new LocationStore(), [])
 
-  defaultLocationStore.replaceSnapshotSilently({
+  locationStore.replaceSnapshotSilently({
     path: typedPath,
     queryParams: typedQueryParams
   })
@@ -25,13 +27,13 @@ const withCustomPath = memo(({children, path, queryParams, ...restProps}) => {
     publishedSnapshotKeyRef.current = snapshotKey
     queueMicrotask(() => {
       if (publishedSnapshotKeyRef.current === snapshotKey) {
-        defaultLocationStore.flushPendingNotification()
+        locationStore.flushPendingNotification()
       }
     })
-  }, [snapshotKey])
+  }, [locationStore, snapshotKey])
 
   return (
-    <LocationStoreContext.Provider value={defaultLocationStore}>
+    <LocationStoreContext.Provider value={locationStore}>
       <LocationContext.Provider value={typedPath}>
         <QueryParamsContext.Provider value={typedQueryParams}>
           {children}
