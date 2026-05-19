@@ -61,11 +61,13 @@ const path = useLocationPath()
 ```jsx
 import currentLocationPath from "on-location-changed/build/current-location-path"
 import currentQueryParams from "on-location-changed/build/current-query-params"
+import useCurrentQueryParams from "on-location-changed/build/use-current-query-params"
 ```
 
 ```jsx
 const path = currentLocationPath()
 const params = currentQueryParams()
+const readCurrentQueryParams = useCurrentQueryParams()
 ```
 
 ```jsx
@@ -78,4 +80,16 @@ const subscription = onSelectedQueryParamsChanged("project_ids", (params) => {
 })
 
 subscription.disconnect()
+```
+
+```jsx
+import {locationPathWithQueryParams, pushQueryParamUpdates} from "on-location-changed/build/query-param-updates"
+```
+
+```jsx
+const path = locationPathWithQueryParams("/timelogs", {project_ids: ["1", "2"]})
+
+pushQueryParamUpdates(router, readCurrentQueryParams(), "/timelogs", {
+  project_ids: ["3"]
+})
 ```
