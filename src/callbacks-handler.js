@@ -6,6 +6,9 @@ class CallbacksHandler {
     this.callbacks = {}
     this.count = 0
     this.currentLocationHref = location.href
+    this.intervalID = undefined
+    this.mutationObserver = undefined
+    this.windowEventsConnected = false
   }
 
   callCallbacks = () => {
@@ -15,7 +18,15 @@ class CallbacksHandler {
   }
 
   connectMutationObserver() {
+    if (this.mutationObserver || typeof document === "undefined" || !document.querySelector) {
+      return
+    }
+
     const body = document.querySelector("body")
+
+    if (!body) {
+      return
+    }
 
     // Solution recommended various places on the internet is to observe for changed and then check if the location has changed.
     const observer = new MutationObserver(digg(this, "onLocationMightHaveChanged"))
@@ -23,6 +34,7 @@ class CallbacksHandler {
 
     observer.observe(body, config)
     observer.observe(document, config)
+    this.mutationObserver = observer
   }
 
   connectReactRouterHistory(history) {
@@ -31,6 +43,12 @@ class CallbacksHandler {
   }
 
   connectWindowEvents() {
+    if (this.windowEventsConnected || typeof window === "undefined" || !window.addEventListener) {
+      return
+    }
+
+    this.windowEventsConnected = true
+
     // If the hash has changed then maybe the entire location has? Trying to catch location change as early as possible.
     window.addEventListener("hashchange", digg(this, "onLocationMightHaveChanged"))
 
@@ -38,7 +56,19 @@ class CallbacksHandler {
     window.addEventListener("popstate", digg(this, "onLocationMightHaveChanged"))
   }
 
-  connectInterval = () => setInterval(digg(this, "onLocationMightHaveChanged"), 500)
+  connectInterval = () => {
+    if (!this.intervalID) {
+      this.intervalID = setInterval(digg(this, "onLocationMightHaveChanged"), 500)
+    }
+
+    return this.intervalID
+  }
+
+  connectBrowserLocationChanges() {
+    this.connectWindowEvents()
+    this.connectMutationObserver()
+    this.connectInterval()
+  }
 
   onLocationChanged = (givenCallback) => {
     this.count += 1

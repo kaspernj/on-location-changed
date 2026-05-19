@@ -1,5 +1,6 @@
 import React, {memo, useCallback, useLayoutEffect, useMemo, useState} from "react"
 import {browserPath, browserQueryParams} from "./browser-location.js"
+import {callbacksHandler} from "./callbacks-handler.js"
 import onLocationChanged from "./on-location-changed"
 import WithCustomPath from "./with-custom-path"
 
@@ -27,6 +28,8 @@ const WithLocationPath = memo(({children, ...restProps}) => {
   }, [])
 
   useLayoutEffect(() => {
+    callbacksHandler.connectBrowserLocationChanges()
+
     const onLocationChangedEvent = onLocationChanged(onLocationChangedCallback)
 
     return () => {
