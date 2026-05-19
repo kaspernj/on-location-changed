@@ -2,8 +2,6 @@
   "name": "on-location-changed",
   "version": "1.0.22",
   "description": "My new module",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",

@@ -1,37 +1,24 @@
-import { useEvent } from 'expo';
-import OnLocationChanged, { OnLocationChangedView } from 'on-location-changed';
-import { Button, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import WithCustomPath from 'on-location-changed/with-custom-path';
+import useLocationPath from 'on-location-changed/use-location-path';
+import { SafeAreaView, ScrollView, Text, View } from 'react-native';
 
 export default function App() {
-  const onChangePayload = useEvent(OnLocationChanged, 'onChange');
+  return (
+    <WithCustomPath path="/example">
+      <ExampleScreen />
+    </WithCustomPath>
+  );
+}
+
+function ExampleScreen() {
+  const path = useLocationPath();
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.container}>
-        <Text style={styles.header}>Module API Example</Text>
-        <Group name="Constants">
-          <Text>{OnLocationChanged.PI}</Text>
-        </Group>
-        <Group name="Functions">
-          <Text>{OnLocationChanged.hello()}</Text>
-        </Group>
-        <Group name="Async functions">
-          <Button
-            title="Set value"
-            onPress={async () => {
-              await OnLocationChanged.setValueAsync('Hello from JS!');
-            }}
-          />
-        </Group>
-        <Group name="Events">
-          <Text>{onChangePayload?.value}</Text>
-        </Group>
-        <Group name="Views">
-          <OnLocationChangedView
-            url="https://www.example.com"
-            onLoad={({ nativeEvent: { url } }) => console.log(`Loaded: ${url}`)}
-            style={styles.view}
-          />
+        <Text style={styles.header}>on-location-changed example</Text>
+        <Group name="Location path">
+          <Text>{path}</Text>
         </Group>
       </ScrollView>
     </SafeAreaView>
@@ -65,9 +52,5 @@ const styles = {
   container: {
     flex: 1,
     backgroundColor: '#eee',
-  },
-  view: {
-    flex: 1,
-    height: 200,
   },
 };
