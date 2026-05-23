@@ -14,7 +14,7 @@
     "open:android": "open -a \"Android Studio\" example/android",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "release:patch": "node scripts/release-patch.js"
+    "release:patch": "release-patch"
   },
   "keywords": [
     "react-native",
@@ -35,9 +35,10 @@
   },
   "devDependencies": {
     "@types/react": "~19.2.9",
-    "expo-module-scripts": "^4.0.2",
     "expo": "~53.0.9",
-    "react-native": "0.79.2"
+    "expo-module-scripts": "^4.0.2",
+    "react-native": "0.79.2",
+    "release-patch": "^1.0.0"
   },
   "peerDependencies": {
     "expo": "*",
