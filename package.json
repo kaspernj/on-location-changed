@@ -34,7 +34,7 @@
     "qs": "^6.10.5"
   },
   "devDependencies": {
-    "@types/react": "~19.2.9",
+    "@types/react": "~19.3.0",
     "expo": "~53.0.9",
     "expo-module-scripts": "^4.0.2",
     "react-native": "0.79.2",
